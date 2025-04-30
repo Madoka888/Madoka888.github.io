@@ -2,7 +2,7 @@
 title: "about 自己紹介"
 ---
 
-# about 自己紹介
+# About 自己紹介
 
 自己紹介<br>
 - まどか

@@ -17,7 +17,7 @@ const allPosts = [aboutPost, ...posts]
 
 <html>
   <head>
-    <title>ブログ一覧</title>
+    <title>まどか記録帳</title>
     <style>
       body {
         font-family: sans-serif;
@@ -54,6 +54,14 @@ const allPosts = [aboutPost, ...posts]
   </head>
   <body>
     <h1>記事一覧</h1>
+
+	 <!-- 「初投稿」の固定リンク -->
+    <section>
+      <a href="https://madoka888.github.io/初投稿" class="card" target="_blank" rel="noopener noreferrer">
+        <h2>初投稿（固定リンク）</h2>
+        <p>https://madoka888.github.io/初投稿</p>
+      </a>
+    </section>
 
     <section class="grid-container">
       {allPosts.map(post => (

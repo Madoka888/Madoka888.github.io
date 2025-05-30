@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content'
 const posts = await getCollection('blog')
 
-// aboutページを手動で作成
+// aboutページ（手動追加）
 const aboutPost = {
   slug: "about",
   data: {
@@ -11,7 +11,7 @@ const aboutPost = {
   }
 }
 
-// aboutを先頭に追加した配列
+// aboutだけ先頭に固定して他は自動（初投稿含む）
 const allPosts = [aboutPost, ...posts]
 ---
 
@@ -37,9 +37,9 @@ const allPosts = [aboutPost, ...posts]
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         padding: 20px;
         transition: transform 0.2s;
-        display: block;
-        color: inherit;
         text-decoration: none;
+        color: inherit;
+        display: block;
       }
       .card:hover {
         transform: translateY(-4px);
@@ -57,7 +57,7 @@ const allPosts = [aboutPost, ...posts]
 
     <section class="grid-container">
       {allPosts.map(post => (
-        <a href={`/${post.slug}`} class="card">
+        <a href={post.slug === "about" ? "/about" : `/blog/${post.slug}`} class="card">
           <h2>{post.data.title}</h2>
           <p>{post.data.summary || "記事の概要をここに追加できます。"}</p>
         </a>
@@ -65,3 +65,4 @@ const allPosts = [aboutPost, ...posts]
     </section>
   </body>
 </html>
+

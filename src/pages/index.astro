@@ -11,7 +11,7 @@ const aboutPost = {
   }
 }
 
-// aboutを先頭に追加した配列
+// about を最初に追加した配列（初投稿.md も含まれる）
 const allPosts = [aboutPost, ...posts]
 ---
 
@@ -54,14 +54,6 @@ const allPosts = [aboutPost, ...posts]
   </head>
   <body>
     <h1>記事一覧</h1>
-
-	 <!-- 「初投稿」の固定リンク -->
-    <section>
-      <a href="https://madoka888.github.io/初投稿" class="card" target="_blank" rel="noopener noreferrer">
-        <h2>初投稿</h2>
-        <p>これからやることなど</p>
-      </a>
-    </section>
 
     <section class="grid-container">
       {allPosts.map(post => (

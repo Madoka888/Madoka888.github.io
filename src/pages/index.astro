@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
+
 const posts = await getCollection('blog')
 
 // aboutページを手動で作成
@@ -11,7 +12,7 @@ const aboutPost = {
   }
 }
 
-// about を最初に追加した配列（初投稿.md も含まれる）
+// aboutを先頭にして、他の投稿を続ける
 const allPosts = [aboutPost, ...posts]
 ---
 

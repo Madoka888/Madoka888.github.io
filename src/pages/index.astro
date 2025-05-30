@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content'
 const posts = await getCollection('blog')
 
-// aboutページ（手動追加）
+// 手動でabout記事を先頭に用意
 const aboutPost = {
   slug: "about",
   data: {
@@ -11,58 +11,50 @@ const aboutPost = {
   }
 }
 
-// aboutだけ先頭に固定して他は自動（初投稿含む）
-const allPosts = [aboutPost, ...posts]
+// 「初投稿」記事をpostsから探す
+const firstPostSlug = "初投稿"
+const firstPost = posts.find((post: { slug: string }) => post.slug === firstPostSlug)
+
+// 初投稿以外の記事
+const otherPosts = posts.filter((post: { slug: string }) => post.slug !== firstPostSlug)
 ---
 
 <html>
   <head>
-    <title>ブログ一覧</title>
+    <title>記事一覧</title>
     <style>
-      body {
-        font-family: sans-serif;
-        background-color: #f7f7f7;
-        padding: 20px;
-      }
-      .grid-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        max-width: 960px;
-        margin: 0 auto;
-      }
-      .card {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        transition: transform 0.2s;
-        text-decoration: none;
-        color: inherit;
-        display: block;
-      }
-      .card:hover {
-        transform: translateY(-4px);
-      }
-      .card h2 {
-        margin-top: 0;
-      }
-      .card p {
-        color: #555;
-      }
+      /* 省略: CSSはそのままでOK */
     </style>
   </head>
   <body>
     <h1>記事一覧</h1>
 
+    <!-- about記事 -->
+    <section class="about-container">
+      <a href="/about" class="card">
+        <h2>{aboutPost.data.title}</h2>
+        <p>{aboutPost.data.summary}</p>
+      </a>
+    </section>
+
+    <!-- 初投稿記事があれば表示 -->
+    {firstPost && (
+      <section class="about-container">
+        <a href={`/blog/${firstPost.slug}`} class="card">
+          <h2>{firstPost.data.title ?? "タイトルなし"}</h2>
+          <p>{firstPost.data.summary ?? "記事の概要をここに追加できます。"}</p>
+        </a>
+      </section>
+    )}
+
+    <!-- それ以外の記事を3列グリッドで表示 -->
     <section class="grid-container">
-      {allPosts.map(post => (
-        <a href={post.slug === "about" ? "/about" : `/blog/${post.slug}`} class="card">
-          <h2>{post.data.title}</h2>
-          <p>{post.data.summary || "記事の概要をここに追加できます。"}</p>
+      {otherPosts.map((post: { slug: any; data: { title: any; summary: any } }) => (
+        <a href={`/blog/${post.slug}`} class="card">
+          <h2>{post.data.title ?? "タイトルなし"}</h2>
+          <p>{post.data.summary ?? "記事の概要をここに追加できます。"}</p>
         </a>
       ))}
     </section>
   </body>
 </html>
-

@@ -1,26 +1,78 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
-const posts = [
-  { title: "初投稿", link: "/初投稿" },
-  { title: "テスト記事2", link: "/test2" },
-  { title: "テスト記事3", link: "/test3" }
-];
+import { getCollection } from 'astro:content'
+const posts = await getCollection('blog')
 ---
 
-<Layout>
-  <main class="p-6">
-    <div class="mb-4">
-      <a href="/about" class="text-blue-600 underline">about</a>
-    </div>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ブログ一覧</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: #f7f7f7;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      /* グリッドコンテナ */
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3列 */
+        gap: 20px;
+        max-width: 960px;
+        margin: 0 auto; /* 中央揃え */
+      }
+      a.card {
+        display: block;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        color: inherit;
+        text-decoration: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      a.card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+      a.card h2 {
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+      a.card p {
+        color: #555;
+        line-height: 1.5;
+        margin: 0;
+      }
 
-    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {posts.map(post => (
-        <a href={post.link} class="block border p-4 rounded-lg shadow hover:shadow-md transition">
-          <h2 class="text-xl font-bold mb-2">{post.title}</h2>
-          <p class="text-gray-600">記事の概要をここに追加できます。</p>
+      /* スマホなど幅が狭い場合は1列に */
+      @media (max-width: 700px) {
+        .grid-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* タブレットぐらいの幅なら2列に */
+      @media (min-width: 701px) and (max-width: 960px) {
+        .grid-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>記事一覧</h1>
+    <div class="grid-container">
+      {posts.map((post: { slug: any; data: { title: unknown; summary: any } }) => (
+        <a href={`/blog/${post.slug}`} class="card">
+          <h2>{post.data.title}</h2>
+          <p>{post.data.summary || "記事の概要をここに追加できます。"}</p>
         </a>
       ))}
-    </section>
-  </main>
-</Layout>
+    </div>
+  </body>
+</html>

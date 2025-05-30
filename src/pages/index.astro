@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content'
 
 const posts = await getCollection('blog')
 
-// aboutページを手動で作成
+// aboutページ
 const aboutPost = {
   slug: "about",
   data: {
@@ -12,6 +12,7 @@ const aboutPost = {
   }
 }
 
+// 初投稿
 const pagesPosts = [
   {
     slug: "初投稿",
@@ -19,20 +20,7 @@ const pagesPosts = [
     summary: "これからやることなど"
   },
 ];
-
-const allPosts = [
-  aboutPost,
-  ...pagesPosts.map(p => ({
-    slug: p.slug,
-    data: {
-      title: p.title,
-      summary: p.summary
-    }
-  })),
-  ...posts
-]
 ---
-
 <html>
   <head>
     <title>まどか記録帳</title>
@@ -42,13 +30,21 @@ const allPosts = [
         background-color: #f7f7f7;
         padding: 20px;
       }
-      .grid-container {
+
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
-        max-width: 960px;
-        margin: 0 auto;
       }
+
       .card {
         background: white;
         border-radius: 12px;
@@ -59,28 +55,51 @@ const allPosts = [
         color: inherit;
         text-decoration: none;
       }
+
       .card:hover {
         transform: translateY(-4px);
       }
+
       .card h2 {
         margin-top: 0;
       }
+
       .card p {
         color: #555;
       }
     </style>
   </head>
   <body>
-    <h1>記事一覧</h1>
-
-    <section class="grid-container">
-      {allPosts.map(post => (
-        <a href={`/${post.slug}`} class="card">
-          <h2>{post.data.title}</h2>
-          <p>{post.data.summary || "記事の概要をここに追加できます。"}</p>
+    <main class="container">
+      <!-- about だけ1段目 -->
+      <section class="grid">
+        <a href={`/${aboutPost.slug}`} class="card">
+          <h2>{aboutPost.data.title}</h2>
+          <p>{aboutPost.data.summary}</p>
         </a>
-      ))}
-    </section>
+      </section>
+
+      <!-- 2段目: 初投稿＋ブログ記事 -->
+      <section class="grid">
+        {[
+          ...pagesPosts.map(p => ({
+            slug: p.slug,
+            title: p.title,
+            summary: p.summary
+          })),
+          ...posts.map((p: { slug: any; data: { title: any; summary: any; }; }) => ({
+            slug: p.slug,
+            title: p.data.title,
+            summary: p.data.summary
+          }))
+        ].map(post => (
+          <a href={`/${post.slug}`} class="card">
+            <h2>{post.title}</h2>
+            <p>{post.summary}</p>
+          </a>
+        ))}
+      </section>
+    </main>
   </body>
 </html>
 

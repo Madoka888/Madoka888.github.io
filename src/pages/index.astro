@@ -12,6 +12,14 @@ const aboutPost = {
   }
 }
 
+const guidePost = {
+  slug: "同人誌制作手引",
+  data: {
+    title: "同人誌制作手引",
+    summary: "同人誌をつくる手順などのまとめ"
+  }
+}
+
 // 初投稿
 const pagesPosts = [
   {
@@ -71,13 +79,15 @@ const pagesPosts = [
   </head>
   <body>
     <main class="container">
-      <!-- about だけ1段目 -->
-      <section class="grid">
-        <a href={`/${aboutPost.slug}`} class="card">
-          <h2>{aboutPost.data.title}</h2>
-          <p>{aboutPost.data.summary}</p>
-        </a>
-      </section>
+     <!-- about + 同人誌手引 1段目に並べる -->
+<section class="grid">
+  {[aboutPost, guidePost].map(post => (
+    <a href={`/${post.slug}`} class="card">
+      <h2>{post.data.title}</h2>
+      <p>{post.data.summary}</p>
+    </a>
+  ))}
+</section>
 
       <!-- 2段目: 初投稿＋ブログ記事 -->
       <section class="grid">

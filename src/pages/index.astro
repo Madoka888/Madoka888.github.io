@@ -8,7 +8,8 @@ const aboutPost = {
   slug: "about",
   data: {
     title: "about",
-    date: "2025-06-01"
+    date: "2025-06-01",
+    summary: "about 自己紹介"
   }
 }
 
@@ -90,7 +91,8 @@ const pagesPosts = [
   {[aboutPost, guidePost].map(post => (
     <a href={`/${post.slug}`} class="card">
       <h2>{post.data.title}</h2>
-      <p>{post.data}</p>
+      <p>post.data.summary</p>
+       {post.data.date && <p style="font-size: 0.9em; color: #888;">{post.data.date}</p>}
     </a>
   ))}
 </section>
@@ -112,6 +114,7 @@ const pagesPosts = [
           <a href={`/${post.slug}`} class="card">
             <h2>{post.title}</h2>
             <p>{post.summary}</p>
+             {post.data.date && <p style="font-size: 0.9em; color: #888;">{post.data.date}</p>}
           </a>
         ))}
       </section>

@@ -8,7 +8,7 @@ const aboutPost = {
   slug: "about",
   data: {
     title: "about",
-    summary: "このサイトについて"
+    date: "2025-06-01"
   }
 }
 
@@ -16,7 +16,7 @@ const guidePost = {
   slug: "同人誌制作手引",
   data: {
     title: "同人誌制作手引",
-    summary: "最終更新日 2025/5/3"
+    date: "2025-06-01"
   }
 }
 
@@ -25,7 +25,8 @@ const pagesPosts = [
   {
     slug: "初投稿",
     title: "初投稿",
-    summary: "最終更新日 2025/5/3"
+    date: "2025-06-01",
+    summary: "初めての投稿です"
   },
 ];
 ---
@@ -89,7 +90,7 @@ const pagesPosts = [
   {[aboutPost, guidePost].map(post => (
     <a href={`/${post.slug}`} class="card">
       <h2>{post.data.title}</h2>
-      <p>{post.data.summary}</p>
+      <p>{post.data}</p>
     </a>
   ))}
 </section>

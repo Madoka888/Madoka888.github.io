@@ -17,7 +17,8 @@ const guidePost = {
   slug: "同人誌制作手引",
   data: {
     title: "同人誌制作手引",
-    date: "2025-06-01"
+    date: "2025-06-01",
+    summary: ""
   }
 }
 
@@ -25,9 +26,11 @@ const guidePost = {
 const pagesPosts = [
   {
     slug: "初投稿",
-    title: "初投稿",
-    date: "2025-06-01",
-    summary: "初めての投稿です"
+    data: {
+      title: "初投稿",
+      date: "2025-06-01",
+      summary: "初めての投稿です"
+    }
   },
 ];
 ---
@@ -91,34 +94,32 @@ const pagesPosts = [
   {[aboutPost, guidePost].map(post => (
     <a href={`/${post.slug}`} class="card">
       <h2>{post.data.title}</h2>
-      <p>post.data.summary</p>
-       {post.data.date && <p style="font-size: 0.9em; color: #888;">{post.data.date}</p>}
+      {post.data.summary && <p>{post.data.summary}</p>}
+      {post.data.date && <p style="font-size: 0.9em; color: #888;">{post.data.date}</p>}
     </a>
   ))}
 </section>
 
       <!-- 2段目: 初投稿＋ブログ記事 -->
-      <section class="grid">
-        {[
-          ...pagesPosts.map(p => ({
-            slug: p.slug,
-            title: p.title,
-            summary: p.summary
-          })),
-          ...posts.map((p: { slug: any; data: { title: any; summary: any; }; }) => ({
-            slug: p.slug,
+       <section class="grid">
+      {[
+        ...pagesPosts,
+        ...posts.map((p: { slug: any; data: { title: any; summary: any; date: any; }; }) => ({
+          slug: p.slug,
+          data: {
             title: p.data.title,
-            summary: p.data.summary
-          }))
-        ].map(post => (
-          <a href={`/${post.slug}`} class="card">
-            <h2>{post.title}</h2>
-            <p>{post.summary}</p>
-             {post.data.date && <p style="font-size: 0.9em; color: #888;">{post.data.date}</p>}
-          </a>
-        ))}
-      </section>
+            summary: p.data.summary,
+            date: p.data.date
+          }
+        }))
+      ].map(post => (
+        <a href={`/${post.slug}`} class="card">
+          <h2>{post.data.title}</h2>
+          {post.data.summary && <p>{post.data.summary}</p>}
+          {post.data.date && <p style="font-size: 0.9em; color: #888;">{post.data.date}</p>}
+        </a>
+      ))}
+    </section>
     </main>
   </body>
 </html>
-

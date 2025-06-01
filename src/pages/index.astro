@@ -22,6 +22,15 @@ const guidePost = {
   }
 }
 
+const otherguidePost = {
+  slug: "その他ページ",
+  data: {
+    title: "その他ページ",
+    date: "2025-06-02",
+    summary: ""
+  }
+}
+
 // 初投稿
 const pagesPosts = [
   {
@@ -91,7 +100,7 @@ const pagesPosts = [
     <main class="container">
      <!-- about + 同人誌手引 1段目に並べる -->
 <section class="grid">
-  {[aboutPost, guidePost].map(post => (
+  {[aboutPost, guidePost, otherguidePost].map(post => (
     <a href={`/${post.slug}`} class="card">
       <h2>{post.data.title}</h2>
       {post.data.summary && <p>{post.data.summary}</p>}

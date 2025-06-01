@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
+import Layout from '../layouts/Layout.astro'
 
 const posts = await getCollection('blog')
 
@@ -42,83 +43,82 @@ const pagesPosts = [
 ];
 ---
 
-<header>
-  <img src="/サイトヘッダー仮3.png" alt="サイトヘッダー仮3" style="width: 100%; height: auto;" />
-</header>
+<Layout>
+  <header>
+    <img src="/サイトヘッダー仮3.png" alt="サイトヘッダー仮3" style="width: 100%; height: auto;" />
+  </header>
 
-<main class="container">
-  <section class="grid">
-    {[aboutPost, guidePost, otherguidePost].map(post => (
-      <a href={`/${post.slug}`} class="card">
-        <h2>{post.data.title}</h2>
-        {post.data.summary && <p>{post.data.summary}</p>}
-        {post.data.date && <p style="font-size: 0.9em; color: #888;">{post.data.date}</p>}
-      </a>
-    ))}
-  </section>
+  <main class="container">
+    <section class="grid">
+      {[aboutPost, guidePost, otherguidePost].map(post => (
+        <a href={`/${post.slug}`} class="card">
+          <h2>{post.data.title}</h2>
+          {post.data.summary && <p>{post.data.summary}</p>}
+          {post.data.date && <p style="font-size: 0.9em; color: #888;">{post.data.date}</p>}
+        </a>
+      ))}
+    </section>
 
-  <section class="grid">
-    {[
-      ...pagesPosts,
-      ...posts.map((p: { slug: any; data: { title: any; summary: any; date: any } }) => ({
+    <section class="grid">
+      {[...pagesPosts, ...posts.map((p: { slug: any; data: { title: any; summary: any; date: any } }) => ({
         slug: p.slug,
         data: {
           title: p.data.title,
           summary: p.data.summary,
           date: p.data.date,
         },
-      })),
-    ].map(post => (
-      <a href={`/${post.slug}`} class="card">
-        <h2>{post.data.title}</h2>
-        {post.data.summary && <p>{post.data.summary}</p>}
-        {post.data.date && <p style="font-size: 0.9em; color: #888;">{post.data.date}</p>}
-      </a>
-    ))}
-  </section>
-</main>
+      }))].map(post => (
+        <a href={`/${post.slug}`} class="card">
+          <h2>{post.data.title}</h2>
+          {post.data.summary && <p>{post.data.summary}</p>}
+          {post.data.date && <p style="font-size: 0.9em; color: #888;">{post.data.date}</p>}
+        </a>
+      ))}
+    </section>
+  </main>
 
-<style>
-  body {
-    font-family: sans-serif;
-    background-color: #f7f7f7;
-    padding: 20px;
-  }
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
+    }
 
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-  }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
 
-  .card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.2s;
-    display: block;
-    color: inherit;
-    text-decoration: none;
-  }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.2s;
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
 
-  .card:hover {
-    transform: translateY(-4px);
-  }
+    .card:hover {
+      transform: translateY(-4px);
+    }
 
-  .card h2 {
-    margin-top: 0;
-  }
+    .card h2 {
+      margin-top: 0;
+    }
 
-  .card p {
-    color: #555;
-  }
-</style>
+    .card p {
+      color: #555;
+    }
+  </style>
+</Layout>

@@ -1,15 +1,13 @@
 ---
 title: "about 自己紹介"
+layout: ../layouts/Layout.astro
 ---
-<main class="page-content">
 
 # About 自己紹介
 
 自己紹介<br>
-- まどか
+- まどか　サークル：中華料理店園田
 - 明治大学政治経済学部経済学科日本経済史専攻<br>
 ここでは私が普段生活している上で、あったこと、頭の中で考えたことを文章化し、整理していきます。
-
-</main>
 
 

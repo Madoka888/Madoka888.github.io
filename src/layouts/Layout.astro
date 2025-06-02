@@ -3,7 +3,7 @@ import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -11,6 +11,14 @@ import "../styles/global.css";
     <meta name="generator" content={Astro.generator} />
     <title>まどか記録帳</title>
   </head>
+   <header class="site-header">
+      <nav class="nav">
+        <a href="/" class="nav-link">トップ</a>
+        <a href="/同人イベントサークル参加履歴" class="nav-link">同人履歴</a>
+        <a href="/ラブライブ！シリーズイベント参加履歴" class="nav-link">ラブライブ履歴</a>
+        <a href="/その他" class="nav-link">その他</a>
+      </nav>
+    </header>
   <body>
     <div class="page-wrapper">
       <slot />
@@ -30,6 +38,30 @@ import "../styles/global.css";
     color: black;
     overflow-x: hidden;
   }
+
+  .site-header {
+    background-color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #444;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover {
+    color: #7a6892;
+  }
+  
   .page-wrapper {
     max-width: 900px;
     margin: 40px auto;

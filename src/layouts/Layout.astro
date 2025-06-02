@@ -11,15 +11,15 @@ import "../styles/global.css";
     <meta name="generator" content={Astro.generator} />
     <title>まどか記録帳</title>
   </head>
-   <header class="site-header">
+  <body>
+    <header class="site-header">
       <nav class="nav">
-        <a href="/" class="nav-link">トップ</a>
-        <a href="/同人イベントサークル参加履歴" class="nav-link">同人履歴</a>
-        <a href="/ラブライブ！シリーズイベント参加履歴" class="nav-link">ラブライブ履歴</a>
-        <a href="/その他" class="nav-link">その他</a>
+        <a href="/" class="nav-link">TOP</a>
+        <a href="/同人誌制作手引" class="nav-link">同人誌制作手引</a>
+        <a href="/その他" class="nav-link">Others</a>
       </nav>
     </header>
-  <body>
+
     <div class="page-wrapper">
       <slot />
     </div>
@@ -27,9 +27,10 @@ import "../styles/global.css";
 </html>
 
 <style>
- *, *::before, *::after {
-  box-sizing: border-box;
-}
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   html,
   body {
     margin: 0;
@@ -43,12 +44,12 @@ import "../styles/global.css";
     background-color: white;
     padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: right; 
   }
 
   .nav {
-    display: flex;
+    display: inline-flex; 
     gap: 1em;
-    justify-content: center;
     font-weight: bold;
   }
 
@@ -61,7 +62,7 @@ import "../styles/global.css";
   .nav-link:hover {
     color: #7a6892;
   }
-  
+
   .page-wrapper {
     max-width: 900px;
     margin: 40px auto;

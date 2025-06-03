@@ -13,12 +13,19 @@ import "../styles/global.css";
   </head>
   <body>
     <header class="site-header">
-      <nav class="nav">
+      <div class="header-inner">
+       <h1 class="site-title">まどか記録帳</h1>
+       <nav class="nav">
         <a href="/" class="nav-link">TOP</a>
         <a href="/同人誌制作手引" class="nav-link">同人誌制作手引</a>
         <a href="/Others" class="nav-link">Others</a>
+      <div> 
       </nav>
     </header>
+
+    <footer class="site-footer">
+      <p>&copy; 2025 Madoka. All rights reserved.</p>
+    </footer>
 
     <div class="page-wrapper">
       <slot />
@@ -45,6 +52,24 @@ import "../styles/global.css";
     padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: right; 
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .site-title {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .site-footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: white;
   }
 
   .nav {

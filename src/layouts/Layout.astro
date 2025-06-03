@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 ---
-
 <!doctype html>
 <html lang="ja">
   <head>
@@ -14,22 +13,22 @@ import "../styles/global.css";
   <body>
     <header class="site-header">
       <div class="header-inner">
-       <div class="site-title">まどか記録帳</div>
-       <nav class="nav">
-        <a href="/" class="nav-link">TOP</a>
-        <a href="/同人誌制作手引" class="nav-link">同人誌制作手引</a>
-        <a href="/Others" class="nav-link">Others</a>
-       </nav>
-      <div> 
+        <div class="site-title">まどか記録帳</div>
+        <nav class="nav">
+          <a href="/" class="nav-link">TOP</a>
+          <a href="/同人誌制作手引" class="nav-link">同人誌制作手引</a>
+          <a href="/Others" class="nav-link">Others</a>
+        </nav>
+      </div>
     </header>
-
-    <footer class="site-footer">
-      <p>&copy; 2025 Madoka. All rights reserved.</p>
-    </footer>
 
     <div class="page-wrapper">
       <slot />
     </div>
+
+    <footer class="site-footer">
+      <p>&copy; 2025 Madoka. All rights reserved.</p>
+    </footer>
   </body>
 </html>
 
@@ -38,13 +37,18 @@ import "../styles/global.css";
     box-sizing: border-box;
   }
 
-  html,
-  body {
+  html, body {
     margin: 0;
     height: 100%;
     background-color: #7a6892;
     color: black;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body {
+    min-height: 100vh;
   }
 
   .site-header {
@@ -54,21 +58,22 @@ import "../styles/global.css";
   }
 
   .header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
   .site-title {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: bold;
-    margin: 0;
   }
 
   .nav {
-    display: flex; 
-    gap: 1em;
+    display: flex;
+    gap: 1.5em;
     font-weight: bold;
   }
 
@@ -92,10 +97,23 @@ import "../styles/global.css";
     flex: 1;
   }
 
-   .site-footer {
+  .site-footer {
     text-align: center;
     padding: 20px;
     font-size: 0.9rem;
     color: white;
+  }
+
+  @media (max-width: 600px) {
+    .header-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .nav {
+      margin-top: 10px;
+      width: 100%;
+      justify-content: flex-start;
+    }
   }
 </style>

@@ -48,13 +48,15 @@ import "../styles/global.css";
   }
 
   body {
-    min-height: 100vh;
+    min-height: auto;
   }
 
   .site-header {
     background-color: white;
     padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto; 
   }
 
   .header-inner {
@@ -114,6 +116,11 @@ import "../styles/global.css";
       margin-top: 10px;
       width: 100%;
       justify-content: flex-start;
+    }
+
+    .page-wrapper {
+      margin: 20px auto;
+      padding: 20px 16px;
     }
   }
 </style>

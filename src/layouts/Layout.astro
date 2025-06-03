@@ -14,13 +14,13 @@ import "../styles/global.css";
   <body>
     <header class="site-header">
       <div class="header-inner">
-       <h1 class="site-title">まどか記録帳</h1>
+       <div class="site-title">まどか記録帳</div>
        <nav class="nav">
         <a href="/" class="nav-link">TOP</a>
         <a href="/同人誌制作手引" class="nav-link">同人誌制作手引</a>
         <a href="/Others" class="nav-link">Others</a>
+       </nav>
       <div> 
-      </nav>
     </header>
 
     <footer class="site-footer">
@@ -50,30 +50,24 @@ import "../styles/global.css";
   .site-header {
     background-color: white;
     padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: right; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   }
 
   .header-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   .site-title {
-    font-size: 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
     margin: 0;
   }
 
-  .site-footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
-    color: white;
-  }
-
   .nav {
-    display: inline-flex; 
+    display: flex; 
     gap: 1em;
     font-weight: bold;
   }
@@ -95,5 +89,13 @@ import "../styles/global.css";
     background-color: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
+    flex: 1;
+  }
+
+   .site-footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: white;
   }
 </style>
